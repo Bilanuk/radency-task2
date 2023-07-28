@@ -1,7 +1,11 @@
+import Note from './components/note/NoteComponent'
+
 function App() {
 
   return (
-    <>Test</>
+    <div className="App">
+      <Note />
+    </div>
   )
 }
 
