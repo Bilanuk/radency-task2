@@ -1,7 +1,9 @@
 declare interface Note {
   id: string;
-  category: 'Task' | 'Random Thought' | 'Idea';
+  category: 'Idea' | 'Task' | 'Random Thought'; 
   content: string;
   isArchived: boolean;
   dates: string[];
 }
+
+type Category = Note['category'];
