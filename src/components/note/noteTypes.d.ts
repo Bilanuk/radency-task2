@@ -7,4 +7,8 @@ declare interface Note {
   createdAt: string;
 }
 
-type Category = Note['category'];
+declare enum Category {
+  Idea = 'Idea',
+  Task = 'Task',
+  RandomThought = 'Random Thought',
+}
