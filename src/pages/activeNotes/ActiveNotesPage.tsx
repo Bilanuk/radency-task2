@@ -5,6 +5,9 @@ import EditNoteModal from '../../components/modals/EditNoteModal';
 import { toggleArchiveNote, deleteNote, updateNote } from '../../redux/notes/notesSlice';
 import { selectActiveNotes } from '../../redux/notes/notesSelector';
 
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { BiArchiveIn } from 'react-icons/bi';
+
 export const ActiveNotesPage = () => {
   const activeNotes: Note[] = useSelector(selectActiveNotes);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -49,9 +52,9 @@ export const ActiveNotesPage = () => {
   ];
 
   const actions: TableAction[] = [
-    { label: 'Edit', onClick: handleEdit },
-    { label: 'Delete', onClick: handleDelete },
-    { label: 'Archive', onClick: handleArchive },
+    { label: 'Edit', icon: AiFillEdit, onClick: handleEdit },
+    { label: 'Archive', icon: BiArchiveIn, onClick: handleArchive },
+    { label: 'Delete', icon: AiFillDelete, onClick: handleDelete },
   ];
 
   const handleNoteSave = (updatedFields: Note) => {

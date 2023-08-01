@@ -5,6 +5,7 @@ declare interface RowData {
 
 declare interface TableAction {
   label: string;
+  icon?: IconType;
   onClick: (itemId: string) => void;
 }
 

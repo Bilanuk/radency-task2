@@ -58,7 +58,7 @@ const Table = ({ data, columns, actions = [] }: TableProps) => {
               <td>
                 {actions.map((action, index) => (
                   <button key={index} onClick={() => action.onClick(item.id)}>
-                    {action.label}
+                    {action.icon ? <action.icon /> : action.label}
                   </button>
                 ))}
               </td>

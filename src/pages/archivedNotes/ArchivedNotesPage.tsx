@@ -3,6 +3,10 @@ import Table from '../../components/table/TableComponent';
 import { toggleArchiveNote, deleteNote } from '../../redux/notes/notesSlice';
 import { selectArchivedNotes } from '../../redux/notes/notesSelector';
 
+import { AiFillDelete } from 'react-icons/ai';
+import { BiArchiveOut } from 'react-icons/bi';
+
+
 export const ArchivedNotesPage = () => {
   const archivedNotes: Note[] = useSelector(selectArchivedNotes);
   const dispatch = useDispatch();
@@ -32,8 +36,8 @@ export const ArchivedNotesPage = () => {
   ];
 
   const actions: TableAction[] = [
-    { label: 'Delete', onClick: handleDelete },
-    { label: 'Unarchive', onClick: handleArchive },
+    { label: 'Delete', icon: AiFillDelete, onClick: handleDelete },
+    { label: 'Unarchive', icon: BiArchiveOut, onClick: handleArchive },
   ];
 
   return (
