@@ -13,6 +13,8 @@ import { BiArchiveIn } from 'react-icons/bi';
 
 import { CategoryIconMapping } from '../../constants';
 
+import { StyledPageWrapper, StyledButton } from '../../styled/shared';
+
 export const ActiveNotesPage = () => {
   const activeNotes: Note[] = useSelector(selectActiveNotes);
   const [isCreating, setIsCreating] = useState<boolean>(false);
@@ -75,12 +77,13 @@ export const ActiveNotesPage = () => {
   };
 
   return (
-    <div>
+    <StyledPageWrapper>
       <Table data={data} columns={columns} actions={actions} />
 
-      <button onClick={() => setIsCreating(true)}>Create note</button>
+      <StyledButton onClick={() => setIsCreating(true)}>Create note</StyledButton>
 
-      {isCreating && <CreateNoteModal onClose={handleModalClose}/>}
+      {isCreating && <CreateNoteModal onClose={handleModalClose} />
+      }
       {isEditing && editingNote &&
         <EditNoteModal
           note={editingNote}
@@ -88,6 +91,6 @@ export const ActiveNotesPage = () => {
           onSave={handleNoteSave}
         />
       }
-    </div>
+    </StyledPageWrapper>
   );
 };

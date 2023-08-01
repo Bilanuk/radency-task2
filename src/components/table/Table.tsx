@@ -1,4 +1,5 @@
 import { StyledTable } from './styled';
+import { VerySadComponent } from '../shared/verySadComponent';
 
 interface TableProps {
   data: RowData[];
@@ -17,7 +18,7 @@ const headerColumnsMapping: Record<string, string> = {
 
 const Table = ({ data, columns, actions = [] }: TableProps) => {
   if (data.length === 0) {
-    return <div>No data to display</div>;
+    return <VerySadComponent />;
   }
 
   return (
