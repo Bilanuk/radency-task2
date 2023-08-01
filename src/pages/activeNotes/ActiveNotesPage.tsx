@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '../../components/table/Table';
 import EditNoteModal from '../../components/modals/EditNoteModal';
+import CreateNoteModal from '../../components/modals/CreateNoteModal';
 import { toggleArchiveNote, deleteNote, updateNote } from '../../redux/notes/notesSlice';
 import { selectActiveNotes } from '../../redux/notes/notesSelector';
 
@@ -14,6 +15,7 @@ import { CategoryIconMapping } from '../../constants';
 
 export const ActiveNotesPage = () => {
   const activeNotes: Note[] = useSelector(selectActiveNotes);
+  const [isCreating, setIsCreating] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editingNote, setEditingNote] = useState<Note | null>(null);
   const dispatch = useDispatch();
@@ -35,6 +37,7 @@ export const ActiveNotesPage = () => {
   };
 
   const handleModalClose = () => {
+    setIsCreating(false);
     setIsEditing(false);
     setEditingNote(null);
   };
@@ -75,13 +78,16 @@ export const ActiveNotesPage = () => {
     <div>
       <Table data={data} columns={columns} actions={actions} />
 
-      {isEditing && editingNote && (
+      <button onClick={() => setIsCreating(true)}>Create note</button>
+
+      {isCreating && <CreateNoteModal onClose={handleModalClose}/>}
+      {isEditing && editingNote &&
         <EditNoteModal
           note={editingNote}
           onClose={handleModalClose}
           onSave={handleNoteSave}
         />
-      )}
+      }
     </div>
   );
 };

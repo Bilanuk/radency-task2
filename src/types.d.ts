@@ -26,4 +26,6 @@ declare interface Note {
   createdAt: string;
 }
 
+declare type PartialNoteCreate = Omit<Note, 'id' | 'dates' | 'createdAt' | 'isArchived'>;
+
 declare type Category = 'Idea' | 'Task' | 'Random Thought';

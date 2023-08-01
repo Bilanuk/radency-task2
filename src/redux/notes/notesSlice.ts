@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import initialNotesState from './initialNotesState';
 
+import { extractDatesFromContent } from '../../utils/dateFormat';
+
 export interface NotesState {
   notes: Note[];
 }
@@ -12,15 +14,27 @@ const notesSlice = createSlice({
   name: 'notes',
   initialState,
   reducers: {
-    addNote: (state, action: PayloadAction<Note>) => {
-      const newNote = { ...action.payload, id: uuidv4() };
+    addNote: (state, action: PayloadAction<PartialNoteCreate>) => {
+      const newNote = {
+        ...action.payload,
+        id: uuidv4(),
+        isArchived: false,
+        dates: extractDatesFromContent(action.payload.content || ''),
+        createdAt: new Date().toISOString(),
+      };
       state.push(newNote);
     },
     updateNote: (state, action: PayloadAction<{ id: string; updatedFields: Partial<Note> }>) => {
       const { id, updatedFields } = action.payload;
-      const noteToUpdate = state.find((note) => note.id === id);
-      if (noteToUpdate) {
-        Object.assign(noteToUpdate, updatedFields);
+      const noteIndex = state.findIndex((note) => note.id === id);
+
+      if (noteIndex !== -1) {
+        const updatedNote = {
+          ...state[noteIndex],
+          ...updatedFields,
+          dates: extractDatesFromContent(updatedFields.content || ''),
+        };
+        state[noteIndex] = updatedNote;
       }
     },
     toggleArchiveNote: (state, action: PayloadAction<string>) => {
@@ -36,7 +50,6 @@ const notesSlice = createSlice({
       if (noteIndex !== -1) {
         state.splice(noteIndex, 1);
       }
-    
     },
   },
 });

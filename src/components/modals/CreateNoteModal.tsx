@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Category } from '../../constants';
+import { useDispatch } from 'react-redux';
+
+import { addNote } from '../../redux/notes/notesSlice';
 
 import {
   ModalOverlay,
@@ -10,30 +13,38 @@ import {
   StyledButton
 } from './styled';
 
-interface EditNoteModalProps {
-  note: Note;
+interface CreateNoteModalProps {
   onClose: () => void;
-  onSave: (note: Note) => void;
 }
 
-const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
-  const [editedNote, setEditedNote] = useState(note);
+const CreateNoteModal = ({ onClose }: CreateNoteModalProps) => {
+  const [category, setCategory] = useState<Category>(Category.Task);
+  const [content, setContent] = useState<string>('');
+  const dispatch = useDispatch();
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setEditedNote({
-      ...editedNote,
-      [name]: value,
-    });
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(event.target.value as Category);
   };
 
-  const handleSaveClick = () => {
-    if(!note.isArchived) {
-      onSave(editedNote);
-    } else {
-      alert('You can\'t edit archived note');
+  const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(event.target.value);
+  };
+
+  const handleCreateNote = () => {
+    if (content) {
+      dispatch(addNote({
+        category,
+        content,
+      }));
     }
 
+    setCategory(Category.Task);
+    setContent('');
+
+    onClose();
+  }
+
+  const handleCancelClick = () => {
     onClose();
   };
 
@@ -41,9 +52,8 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
     <ModalOverlay>
       <ModalContent>
         <StyledSelect
-          name="category"
-          value={editedNote.category}
-          onChange={handleChange}
+          value={category}
+          onChange={handleCategoryChange}
         >
           {Object.values(Category).map((category) => (
             <StyledOption key={category} value={category}>
@@ -53,14 +63,18 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
         </StyledSelect>
         <StyledTextArea
           name="content"
-          value={editedNote.content}
-          onChange={handleChange}
+          value={content}
+          onChange={handleContentChange}
         />
-        <StyledButton onClick={handleSaveClick}>Save</StyledButton>
-        <StyledButton onClick={onClose}>Cancel</StyledButton>
+        <StyledButton onClick={handleCreateNote}>
+          Create
+        </StyledButton>
+        <StyledButton onClick={handleCancelClick}>
+          Cancel
+        </StyledButton>
       </ModalContent>
     </ModalOverlay>
   );
 };
 
-export default EditNoteModal;
+export default CreateNoteModal;
