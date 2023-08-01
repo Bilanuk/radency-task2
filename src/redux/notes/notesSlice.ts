@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import initialNotesState from './initialNotesState';
 
-import { extractDatesFromContent } from '../../utils/dateFormat';
+import { extractDatesFromContent, getCurrentTime } from '../../utils/dateFormat';
 
 export interface NotesState {
   notes: Note[];
@@ -20,7 +20,7 @@ const notesSlice = createSlice({
         id: uuidv4(),
         isArchived: false,
         dates: extractDatesFromContent(action.payload.content || ''),
-        createdAt: new Date().toISOString(),
+        createdAt: getCurrentTime(),
       };
       state.push(newNote);
     },

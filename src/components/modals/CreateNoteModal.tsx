@@ -31,6 +31,11 @@ const CreateNoteModal = ({ onClose }: CreateNoteModalProps) => {
   };
 
   const handleCreateNote = () => {
+    if (!content) {
+      alert('Please enter note content');
+      return;
+    }
+  
     if (content) {
       dispatch(addNote({
         category,

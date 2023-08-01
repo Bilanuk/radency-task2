@@ -1,3 +1,5 @@
+import { getCurrentTime } from '../../utils/dateFormat';
+
 const initialNotesState = [
   {
     id: '1',
@@ -5,7 +7,7 @@ const initialNotesState = [
     content: 'First idea note 23/12/2020, 11/01/2021',
     isArchived: false,
     dates: ['23/12/2020', '11/01/2021'],
-    createdAt: new Date().toLocaleString() + "",
+    createdAt: getCurrentTime(),
   },
   {
     id: '2',
@@ -13,7 +15,7 @@ const initialNotesState = [
     content: 'Sample task note',
     isArchived: true,
     dates: [],
-    createdAt: new Date().toLocaleString() + "",
+    createdAt: getCurrentTime(),
   },
   {
     id: '3',
@@ -21,7 +23,7 @@ const initialNotesState = [
     content: 'Random thought text',
     isArchived: false,
     dates: [],
-    createdAt: new Date().toLocaleString() + "",
+    createdAt: getCurrentTime(),
   },
 ];
 
