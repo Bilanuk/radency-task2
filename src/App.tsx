@@ -1,24 +1,20 @@
-import { useSelector } from 'react-redux';
-import { selectActiveNotes, selectArchivedNotes, selectNotesTable } from './redux/notes/notesSelector';
-import NoteComponent from './components/note/NoteComponent';
-import Table from './components/table/TableComponent';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { ActiveNotesPage } from './pages/activeNotes/ActiveNotesPage';
+import { ArchivedNotesPage } from './pages/archivedNotes/ArchivedNotesPage';
+import { SummaryPage } from './pages/summary/SummaryPage';
+import Header from './components/header/Header';
 
 function App() {
-  const activeNotes: Note[] = useSelector(selectActiveNotes);
-  const archivedNotes: Note[] = useSelector(selectArchivedNotes);
-  const notesTable = useSelector(selectNotesTable);
-
   return (
-    <div className="App">
-      <h1>Active Notes:</h1>
-      <Table data={activeNotes} />
-
-      <h1>Archived Notes:</h1>
-      <Table data={archivedNotes} />
-
-      <h1>Summary</h1>
-      <Table data={notesTable} />
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="active-notes" element={<ActiveNotesPage />} />
+        <Route path="archived-notes" element={<ArchivedNotesPage />} />
+        <Route path="summary" element={<SummaryPage />} />
+        <Route path="*" element={<Navigate to="/active-notes" replace />} />
+      </Routes>
+    </Router>
   )
 }
 

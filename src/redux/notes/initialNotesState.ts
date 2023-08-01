@@ -18,7 +18,7 @@ const initialNotesState = [
   {
     id: '3',
     category: 'Random Thought',
-    content: 'Random thought note',
+    content: 'Random thought text',
     isArchived: false,
     dates: [],
     createdAt: new Date().toLocaleString() + "",

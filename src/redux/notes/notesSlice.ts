@@ -32,7 +32,11 @@ const notesSlice = createSlice({
     },
     deleteNote: (state, action: PayloadAction<string>) => {
       const noteId = action.payload;
-      state = state.filter((note) => note.id !== noteId);
+      const noteIndex = state.findIndex((note) => note.id === noteId);
+      if (noteIndex !== -1) {
+        state.splice(noteIndex, 1);
+      }
+    
     },
   },
 });

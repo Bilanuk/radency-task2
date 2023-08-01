@@ -1,3 +1,4 @@
+import { Category } from './../../enums';
 import { createSelector } from '@reduxjs/toolkit';
 import { NotesState } from './notesSlice';
 
@@ -14,7 +15,7 @@ export const selectArchivedNotes = createSelector(
 export const selectNotesTable = createSelector(
   (state: NotesState) => state.notes,
   (notes) => {
-    const table = ['Idea', 'Task', 'Random Thought'].map((category) => ({
+    const table = Object.values(Category).map((category) => ({
       category,
       activeNoteCount: 0,
       archivedNotesCount: 0,
@@ -30,7 +31,7 @@ export const selectNotesTable = createSelector(
       }
     });
     
-    return table;
+    return table as SummaryInfo[];
   }
 );
 
