@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Table from '../../components/table/TableComponent';
+import Table from '../../components/table/Table';
 import { toggleArchiveNote, deleteNote } from '../../redux/notes/notesSlice';
 import { selectArchivedNotes } from '../../redux/notes/notesSelector';
 
 import { AiFillDelete } from 'react-icons/ai';
 import { BiArchiveOut } from 'react-icons/bi';
 
+import { CategoryIconMapping } from '../../constants';
 
 export const ArchivedNotesPage = () => {
   const archivedNotes: Note[] = useSelector(selectArchivedNotes);
@@ -20,12 +21,9 @@ export const ArchivedNotesPage = () => {
   };
 
   const data: RowData[] = archivedNotes.map((note: Note) => ({
-    id: note.id,
-    category: note.category,
-    content: note.content,
-    archived: note.isArchived,
-    dates: note.dates,
-    createdAt: note.createdAt,
+    ...note,
+    dates: note.dates.join(', '),
+    categoryIcon: CategoryIconMapping[note.category],
   }));
 
   const columns: string[] = [
@@ -36,14 +34,11 @@ export const ArchivedNotesPage = () => {
   ];
 
   const actions: TableAction[] = [
-    { label: 'Delete', icon: AiFillDelete, onClick: handleDelete },
     { label: 'Unarchive', icon: BiArchiveOut, onClick: handleArchive },
+    { label: 'Delete', icon: AiFillDelete, onClick: handleDelete },
   ];
 
   return (
-    <div>
-      <h1>Active Notes:</h1>
-      <Table data={data} columns={columns} actions={actions} />
-    </div>
+    <Table data={data} columns={columns} actions={actions} />
   );
 };

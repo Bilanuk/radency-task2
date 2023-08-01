@@ -19,15 +19,7 @@ interface EditNoteModalProps {
 const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
   const [editedNote, setEditedNote] = useState(note);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setEditedNote({
-      ...editedNote,
-      [name]: value,
-    });
-  };
-
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setEditedNote({
       ...editedNote,
@@ -45,17 +37,13 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
     onClose();
   };
 
-  const handleCancelClick = () => {
-    onClose();
-  };
-
   return (
     <ModalOverlay>
       <ModalContent>
         <StyledSelect
           name="category"
           value={editedNote.category}
-          onChange={handleSelectChange}
+          onChange={handleChange}
         >
           {Object.values(Category).map((category) => (
             <StyledOption key={category} value={category}>
@@ -66,10 +54,10 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
         <StyledTextArea
           name="content"
           value={editedNote.content}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <StyledButton onClick={handleSaveClick}>Save</StyledButton>
-        <StyledButton onClick={handleCancelClick}>Cancel</StyledButton>
+        <StyledButton onClick={onClose}>Cancel</StyledButton>
       </ModalContent>
     </ModalOverlay>
   );

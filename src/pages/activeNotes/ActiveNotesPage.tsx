@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Table from '../../components/table/TableComponent';
+import Table from '../../components/table/Table';
 import EditNoteModal from '../../components/modals/EditNoteModal';
 import { toggleArchiveNote, deleteNote, updateNote } from '../../redux/notes/notesSlice';
 import { selectActiveNotes } from '../../redux/notes/notesSelector';
 
+import { extractDatesFromContent } from '../../utils/dateFormat';
+
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { BiArchiveIn } from 'react-icons/bi';
+
+import { CategoryIconMapping } from '../../constants';
 
 export const ActiveNotesPage = () => {
   const activeNotes: Note[] = useSelector(selectActiveNotes);
@@ -36,12 +40,9 @@ export const ActiveNotesPage = () => {
   };
 
   const data: RowData[] = activeNotes.map((note: Note) => ({
-    id: note.id,
-    category: note.category,
-    content: note.content,
-    archived: note.isArchived,
-    dates: note.dates,
-    createdAt: note.createdAt,
+    ...note,
+    dates: note.dates.join(', '),
+    categoryIcon: CategoryIconMapping[note.category],
   }));
 
   const columns: string[] = [
@@ -61,7 +62,10 @@ export const ActiveNotesPage = () => {
     if (editingNote) {
       dispatch(updateNote({
         id: editingNote.id,
-        updatedFields,
+        updatedFields: {
+          ...updatedFields,
+          dates: extractDatesFromContent(updatedFields.content),
+        },
       }));
       setIsEditing(false);
     }
@@ -69,7 +73,6 @@ export const ActiveNotesPage = () => {
 
   return (
     <div>
-      <h1>Active Notes:</h1>
       <Table data={data} columns={columns} actions={actions} />
 
       {isEditing && editingNote && (

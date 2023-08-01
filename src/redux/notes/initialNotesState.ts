@@ -2,9 +2,9 @@ const initialNotesState = [
   {
     id: '1',
     category: 'Idea',
-    content: 'First idea note',
+    content: 'First idea note 23/12/2020, 11/01/2021',
     isArchived: false,
-    dates: [],
+    dates: ['23/12/2020', '11/01/2021'],
     createdAt: new Date().toLocaleString() + "",
   },
   {

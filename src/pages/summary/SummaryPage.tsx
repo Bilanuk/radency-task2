@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux';
-import Table from '../../components/table/TableComponent';
+import Table from '../../components/table/Table';
 import { selectNotesTable } from '../../redux/notes/notesSelector';
+
+import { CategoryIconMapping } from '../../constants';
 
 export const SummaryPage = () => {
   const summary: SummaryInfo[] = useSelector(selectNotesTable);
 
   const data: RowData[] = summary.map((item: SummaryInfo) => ({
+    ...item,
     id: item.category,
-    category: item.category,
-    activeNoteCount: item.activeNoteCount,
-    archivedNotesCount: item.archivedNotesCount,
+    categoryIcon: CategoryIconMapping[item.category],
   }));
 
   const columns: string[] = [
@@ -19,9 +20,6 @@ export const SummaryPage = () => {
   ];
 
   return (
-    <div>
-      <h1>Summary:</h1>
-      <Table data={data} columns={columns} />
-    </div>
+    <Table data={data} columns={columns} />
   );
 };

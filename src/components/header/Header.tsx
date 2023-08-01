@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+
+import { StyledNav, StyledNavLink } from "./styled";
 
 const Header = () => {
   return (
-    <nav>
-      <NavLink to="/active-notes">Active Notes</NavLink>
-      <NavLink to="/archived-notes">Archived Notes</NavLink>
-      <NavLink to="/summary">Summary</NavLink>
-    </nav>
+    <StyledNav>
+      <StyledNavLink to="/active-notes">Active Notes</StyledNavLink>
+      <StyledNavLink to="/archived-notes">Archived Notes</StyledNavLink>
+      <StyledNavLink to="/summary">Summary</StyledNavLink>
+    </StyledNav>
   )
 };
 

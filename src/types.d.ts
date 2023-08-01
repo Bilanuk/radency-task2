@@ -1,5 +1,6 @@
 declare interface RowData {
   id: string;
+  categoryIcon?: IconType;
   [key: string];
 }
 

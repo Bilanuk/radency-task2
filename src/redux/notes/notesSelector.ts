@@ -1,4 +1,4 @@
-import { Category } from './../../enums';
+import { Category } from '../../constants';
 import { createSelector } from '@reduxjs/toolkit';
 import { NotesState } from './notesSlice';
 

@@ -1,58 +1,44 @@
-import styled from 'styled-components';
+import { StyledTable } from './styled';
 
 interface TableProps {
   data: RowData[];
   columns: string[];
   actions?: TableAction[];
 }
-
-const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  th,
-  td {
-    border: 1px solid #444;
-    padding: 8px;
-    text-align: left;
-  }
-  th {
-    background-color: #1a1a1a;
-    color: #fff;
-  }
-  td {
-    background-color: #333;
-    color: #fff;
-  }
-  button {
-    margin-right: 4px;
-    background-color: #444;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #555;
-  }
-`;
+  
+const headerColumnsMapping: Record<string, string> = {
+  category: 'Category',
+  content: 'Content',
+  dates: 'Dates',
+  createdAt: 'Created At',
+  activeNoteCount: 'Active Notes',
+  archivedNotesCount: 'Archived Notes',
+ };
 
 const Table = ({ data, columns, actions = [] }: TableProps) => {
+  if (data.length === 0) {
+    return <div>No data to display</div>;
+  }
+
   return (
     <StyledTable>
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column}>{column}</th>
+            <th key={column}>{headerColumnsMapping[column]}</th>
           ))}
-          {actions.length > 0 && <th>Actions</th>}
+          {actions.length > 0 && <th></th>}
         </tr>
       </thead>
       <tbody>
         {data.map((item) => (
           <tr key={item.id}>
             {columns.map((column) => (
-              <td key={`${item.id}-${column}`}>{item[column]}</td>
+              <td key={`${item.id}-${column}`}>{
+                column === 'category' && item.categoryIcon
+                  ? <><item.categoryIcon /> {item[column]} </>
+                  : item[column]
+              }</td>
             ))}
             {actions.length > 0 && (
               <td>
