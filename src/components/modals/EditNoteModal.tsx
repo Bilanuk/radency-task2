@@ -7,7 +7,9 @@ import {
   StyledTextArea,
   StyledSelect,
   StyledOption,
-  StyledButton
+  StyledButton,
+  StyledModalActions,
+  StyledModalHeader,
 } from './styled';
 
 interface EditNoteModalProps {
@@ -36,7 +38,7 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
   };
 
   const handleSaveClick = () => {
-    if(!note.isArchived) {
+    if (!note.isArchived) {
       onSave(editedNote);
     } else {
       alert('You can\'t edit archived note');
@@ -52,6 +54,7 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
   return (
     <ModalOverlay>
       <ModalContent>
+        <StyledModalHeader>Edit note</StyledModalHeader>
         <StyledSelect
           name="category"
           value={editedNote.category}
@@ -68,8 +71,10 @@ const EditNoteModal = ({ note, onClose, onSave }: EditNoteModalProps) => {
           value={editedNote.content}
           onChange={handleInputChange}
         />
-        <StyledButton onClick={handleSaveClick}>Save</StyledButton>
-        <StyledButton onClick={handleCancelClick}>Cancel</StyledButton>
+        <StyledModalActions>
+          <StyledButton onClick={handleSaveClick}>Save</StyledButton>
+          <StyledButton onClick={handleCancelClick}>Cancel</StyledButton>
+        </StyledModalActions>
       </ModalContent>
     </ModalOverlay>
   );

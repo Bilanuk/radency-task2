@@ -13,9 +13,18 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: #fff;
+  width: 500px;
+  background-color: gray;
   padding: 20px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const StyledTextArea = styled.textarea`
@@ -60,6 +69,23 @@ const StyledButton = styled.button`
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  background-color: #2f2f2f;
+`;
+
+const StyledModalActions = styled.div`
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledModalHeader = styled.h2`
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+  color: #fff;
 `;
 
 export {
@@ -68,5 +94,7 @@ export {
   StyledTextArea,
   StyledSelect,
   StyledOption,
-  StyledButton
+  StyledButton,
+  StyledModalActions,
+  StyledModalHeader,
 };

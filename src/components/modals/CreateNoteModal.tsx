@@ -10,7 +10,9 @@ import {
   StyledTextArea,
   StyledSelect,
   StyledOption,
-  StyledButton
+  StyledButton,
+  StyledModalActions,
+  StyledModalHeader,
 } from './styled';
 
 interface CreateNoteModalProps {
@@ -35,7 +37,7 @@ const CreateNoteModal = ({ onClose }: CreateNoteModalProps) => {
       alert('Please enter note content');
       return;
     }
-  
+
     if (content) {
       dispatch(addNote({
         category,
@@ -56,6 +58,7 @@ const CreateNoteModal = ({ onClose }: CreateNoteModalProps) => {
   return (
     <ModalOverlay>
       <ModalContent>
+        <StyledModalHeader>Create note</StyledModalHeader>
         <StyledSelect
           value={category}
           onChange={handleCategoryChange}
@@ -71,12 +74,14 @@ const CreateNoteModal = ({ onClose }: CreateNoteModalProps) => {
           value={content}
           onChange={handleContentChange}
         />
-        <StyledButton onClick={handleCreateNote}>
-          Create
-        </StyledButton>
-        <StyledButton onClick={handleCancelClick}>
-          Cancel
-        </StyledButton>
+        <StyledModalActions>
+          <StyledButton onClick={handleCreateNote}>
+            Create
+          </StyledButton>
+          <StyledButton onClick={handleCancelClick}>
+            Cancel
+          </StyledButton>
+        </StyledModalActions>
       </ModalContent>
     </ModalOverlay>
   );
