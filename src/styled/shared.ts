@@ -15,10 +15,18 @@ const AppWrapper = styled.div`
 `;
 
 const StyledPageWrapper = styled.div`
-  width: 90%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 1300px) {
+    width: 90%;
+  }
+
+  @media (max-width: 1100px) {
+    width: 100%;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -41,6 +49,11 @@ const StyledActionButton = styled.button`
   padding: 0;
   margin: 0;
   cursor: pointer;
+`;
+
+const ActionTd = styled.td`
+  text-align: center;
+  padding: 0;
 `;
 
 const DefaultIcon = `
@@ -85,6 +98,7 @@ export {
   AppWrapper,
   StyledPageWrapper,
   StyledButton,
+  ActionTd,
   StyledActionButton,
   StyledHiOutlineLightBulb,
   StyledBiTask,

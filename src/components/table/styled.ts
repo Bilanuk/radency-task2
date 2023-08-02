@@ -6,6 +6,7 @@ export const StyledTable = styled.table`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   max-width: 100%;
   width: 100%;
+  border-radius: 8px;
 
   th,
   td {
@@ -20,7 +21,8 @@ export const StyledTable = styled.table`
   
   th {
     text-align: center;
-    background-color: #55608f;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
   }
   
   tbody tr:hover {
