@@ -4,6 +4,8 @@ import { selectNotesTable } from '../../redux/notes/notesSelector';
 
 import { CategoryIconMapping } from '../../constants';
 
+import { StyledPageWrapper } from '../../styled/shared';
+
 export const SummaryPage = () => {
   const summary: SummaryInfo[] = useSelector(selectNotesTable);
 
@@ -20,6 +22,8 @@ export const SummaryPage = () => {
   ];
 
   return (
-    <Table data={data} columns={columns} />
+    <StyledPageWrapper>
+      <Table data={data} columns={columns} />
+    </StyledPageWrapper>
   );
 };

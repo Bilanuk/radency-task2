@@ -8,8 +8,7 @@ import { selectActiveNotes } from '../../redux/notes/notesSelector';
 
 import { extractDatesFromContent } from '../../utils/dateFormat';
 
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
-import { BiArchiveIn } from 'react-icons/bi';
+import { StyledAiFillDelete, StyledAiFillEdit, StyledBiArchiveIn } from '../../styled/shared';
 
 import { CategoryIconMapping } from '../../constants';
 
@@ -58,9 +57,9 @@ export const ActiveNotesPage = () => {
   ];
 
   const actions: TableAction[] = [
-    { label: 'Edit', icon: AiFillEdit, onClick: handleEdit },
-    { label: 'Archive', icon: BiArchiveIn, onClick: handleArchive },
-    { label: 'Delete', icon: AiFillDelete, onClick: handleDelete },
+    { label: 'Edit', icon: StyledAiFillEdit, onClick: handleEdit },
+    { label: 'Archive', icon: StyledBiArchiveIn, onClick: handleArchive },
+    { label: 'Delete', icon: StyledAiFillDelete, onClick: handleDelete },
   ];
 
   const handleNoteSave = (updatedFields: Note) => {

@@ -1,7 +1,21 @@
 import styled from 'styled-components';
 
-const StyledPageWrapper = styled.div`
+import { HiOutlineLightBulb } from 'react-icons/hi';
+import { BiTask } from 'react-icons/bi';
+import { AiOutlineQuestion } from 'react-icons/ai';
+
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { BiArchiveIn, BiArchiveOut } from 'react-icons/bi';
+
+const AppWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledPageWrapper = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,4 +35,62 @@ const StyledButton = styled.button`
   color: #000;
 `;
 
-export { StyledPageWrapper, StyledButton };
+const StyledActionButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+`;
+
+const DefaultIcon = `
+  font-size: 20px;
+  padding: 5px;
+  margin-right: 5px;
+  color: #ffffff;
+  background-color: #2f2f2f; 
+  border-radius: 5px;
+  vertical-align: middle;
+`;
+
+const StyledHiOutlineLightBulb = styled(HiOutlineLightBulb)`
+  ${DefaultIcon}
+`;
+
+const StyledBiTask = styled(BiTask)`
+  ${DefaultIcon}
+`;
+
+const StyledAiOutlineQuestion = styled(AiOutlineQuestion)`
+  ${DefaultIcon}
+`;
+
+const StyledAiFillDelete = styled(AiFillDelete)`
+  ${DefaultIcon}
+`;
+
+const StyledAiFillEdit = styled(AiFillEdit)`
+  ${DefaultIcon}
+`;
+
+const StyledBiArchiveIn = styled(BiArchiveIn)`
+  ${DefaultIcon}
+`;
+
+const StyledBiArchiveOut = styled(BiArchiveOut)`
+  ${DefaultIcon}
+`;
+
+export {
+  AppWrapper,
+  StyledPageWrapper,
+  StyledButton,
+  StyledActionButton,
+  StyledHiOutlineLightBulb,
+  StyledBiTask,
+  StyledAiOutlineQuestion,
+  StyledAiFillDelete,
+  StyledAiFillEdit,
+  StyledBiArchiveIn,
+  StyledBiArchiveOut,
+};

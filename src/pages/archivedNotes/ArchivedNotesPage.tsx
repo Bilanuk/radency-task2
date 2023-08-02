@@ -3,10 +3,12 @@ import Table from '../../components/table/Table';
 import { toggleArchiveNote, deleteNote } from '../../redux/notes/notesSlice';
 import { selectArchivedNotes } from '../../redux/notes/notesSelector';
 
-import { AiFillDelete } from 'react-icons/ai';
-import { BiArchiveOut } from 'react-icons/bi';
+import { StyledAiFillDelete, StyledBiArchiveOut } from '../../styled/shared';
+
 
 import { CategoryIconMapping } from '../../constants';
+
+import { StyledPageWrapper } from '../../styled/shared';
 
 export const ArchivedNotesPage = () => {
   const archivedNotes: Note[] = useSelector(selectArchivedNotes);
@@ -34,11 +36,13 @@ export const ArchivedNotesPage = () => {
   ];
 
   const actions: TableAction[] = [
-    { label: 'Unarchive', icon: BiArchiveOut, onClick: handleArchive },
-    { label: 'Delete', icon: AiFillDelete, onClick: handleDelete },
+    { label: 'Unarchive', icon: StyledBiArchiveOut, onClick: handleArchive },
+    { label: 'Delete', icon: StyledAiFillDelete, onClick: handleDelete },
   ];
 
   return (
-    <Table data={data} columns={columns} actions={actions} />
+    <StyledPageWrapper>
+      <Table data={data} columns={columns} actions={actions} />
+    </StyledPageWrapper>
   );
 };

@@ -4,17 +4,21 @@ import { ArchivedNotesPage } from './pages/archivedNotes/ArchivedNotesPage';
 import { SummaryPage } from './pages/summary/SummaryPage';
 import Header from './components/header/Header';
 
+import { AppWrapper } from './styled/shared';
+
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="active-notes" element={<ActiveNotesPage />} />
-        <Route path="archived-notes" element={<ArchivedNotesPage />} />
-        <Route path="summary" element={<SummaryPage />} />
-        <Route path="*" element={<Navigate to="/active-notes" replace />} />
-      </Routes>
-    </Router>
+    <AppWrapper>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="active-notes" element={<ActiveNotesPage />} />
+          <Route path="archived-notes" element={<ArchivedNotesPage />} />
+          <Route path="summary" element={<SummaryPage />} />
+          <Route path="*" element={<Navigate to="/active-notes" replace />} />
+        </Routes>
+      </Router>
+    </AppWrapper>
   )
 }
 

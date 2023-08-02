@@ -13,7 +13,7 @@ const initialNotesState = [
     id: '2',
     category: 'Task',
     content: 'Sample task note',
-    isArchived: true,
+    isArchived: false,
     dates: [],
     createdAt: getCurrentTime(),
   },
@@ -25,6 +25,39 @@ const initialNotesState = [
     dates: [],
     createdAt: getCurrentTime(),
   },
+  {
+    id: '4',
+    category: 'Idea',
+    content: 'Second idea note',
+    isArchived: false,
+    dates: [],
+    createdAt: getCurrentTime(),
+  },
+  {
+    id: '5',
+    category: 'Task',
+    content: 'Second task note',
+    isArchived: false,
+    dates: [],
+    createdAt: getCurrentTime(),
+  },
+  {
+    id: '6',
+    category: 'Random Thought',
+    content: 'Second random thought note',
+    isArchived: false,
+    dates: [],
+    createdAt: getCurrentTime(),
+  },
+  {
+    id: '7',
+    category: 'Idea',
+    content: 'Third idea note',
+    isArchived: false,
+    dates: [],
+    createdAt: getCurrentTime(),
+  },
+
 ];
 
 export default initialNotesState;

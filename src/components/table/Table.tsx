@@ -1,6 +1,8 @@
 import { StyledTable } from './styled';
 import { VerySadComponent } from '../shared/verySadComponent';
 
+import { StyledActionButton } from './../../styled/shared';
+
 interface TableProps {
   data: RowData[];
   columns: string[];
@@ -44,9 +46,9 @@ const Table = ({ data, columns, actions = [] }: TableProps) => {
             {actions.length > 0 && (
               <td>
                 {actions.map((action, index) => (
-                  <button key={index} onClick={() => action.onClick(item.id)}>
+                  <StyledActionButton key={index} onClick={() => action.onClick(item.id)}>
                     {action.icon ? <action.icon /> : action.label}
-                  </button>
+                  </StyledActionButton>
                 ))}
               </td>
             )}
