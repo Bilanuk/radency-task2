@@ -1,14 +1,17 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { ActiveNotesPage } from './pages/activeNotes/ActiveNotesPage';
-import { ArchivedNotesPage } from './pages/archivedNotes/ArchivedNotesPage';
-import { SummaryPage } from './pages/summary/SummaryPage';
-import Header from './components/header/Header';
-
-import { AppWrapper } from './styled/shared';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { ActiveNotesPage } from "./pages/activeNotes/ActiveNotesPage";
+import { ArchivedNotesPage } from "./pages/archivedNotes/ArchivedNotesPage";
+import { SummaryPage } from "./pages/summary/SummaryPage";
+import Header from "./components/header/Header";
 
 function App() {
   return (
-    <AppWrapper>
+    <div className="w-full flex flex-col items-center">
       <Router>
         <Header />
         <Routes>
@@ -18,8 +21,8 @@ function App() {
           <Route path="*" element={<Navigate to="/active-notes" replace />} />
         </Routes>
       </Router>
-    </AppWrapper>
-  )
+    </div>
+  );
 }
 
 export default App;
