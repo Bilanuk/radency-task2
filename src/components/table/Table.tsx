@@ -1,4 +1,3 @@
-import { StyledTable } from "./styled";
 import { VerySadComponent } from "../shared/verySadComponent";
 
 import { TableItem } from "./TableItem";
@@ -24,26 +23,35 @@ const Table = ({ data, columns, actions = [] }: TableProps) => {
   }
 
   return (
-    <StyledTable>
-      <thead>
-        <tr>
-          {columns.map((column) => (
-            <th key={column}>{headerColumnsMapping[column]}</th>
+    <div className="w-full rounded-lg shadow-lg overflow-hidden">
+      <table className="border-collapse w-full">
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th
+                className="text-center bg-primary bg-opacity-80 text-black py-3 px-6"
+                key={column}
+              >
+                {headerColumnsMapping[column]}
+              </th>
+            ))}
+            {actions.length > 0 && (
+              <th className="text-center bg-primary bg-opacity-80 text-black py-3 px-6" />
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <TableItem
+              key={item.id}
+              item={item}
+              columns={columns}
+              actions={actions}
+            />
           ))}
-          {actions.length > 0 && <th></th>}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <TableItem
-            key={item.id}
-            item={item}
-            columns={columns}
-            actions={actions}
-          />
-        ))}
-      </tbody>
-    </StyledTable>
+        </tbody>
+      </table>
+    </div>
   );
 };
 
