@@ -1,8 +1,6 @@
-import {
-  StyledHiOutlineLightBulb,
-  StyledBiTask,
-  StyledAiOutlineQuestion
-} from './styled/shared';
+import { AiOutlineQuestion } from "react-icons/ai";
+import { BiTask } from "react-icons/bi";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 export const Category = {
   Idea: 'Idea',
@@ -11,7 +9,7 @@ export const Category = {
 } as const;
 
 export const CategoryIconMapping = {
-  [Category.Idea]: StyledHiOutlineLightBulb,
-  [Category.Task]: StyledBiTask,
-  [Category.RandomThought]: StyledAiOutlineQuestion,
+  [Category.Idea]: HiOutlineLightBulb,
+  [Category.Task]: BiTask,
+  [Category.RandomThought]: AiOutlineQuestion,
 } as const;

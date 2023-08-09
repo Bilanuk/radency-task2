@@ -1,4 +1,4 @@
-import { VerySadComponentWrapper, StyledVerySadComponent } from "./styled";
+import { FaSadTear } from "react-icons/fa";
 
 interface VerySadComponentProps {
   message?: string;
@@ -15,14 +15,15 @@ const funnyMessages = [
 ];
 
 const VerySadComponent = ({ message }: VerySadComponentProps) => {
-  const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+  const randomMessage =
+    funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
 
   return (
-    <VerySadComponentWrapper>
-      <StyledVerySadComponent />
-      <h1>{message ? message : randomMessage}</h1>
-    </VerySadComponentWrapper>
+    <div className="w-full flex flex-col items-center mt-10">
+      <FaSadTear className="text-secondary text-9xl mb-2" />
+      <h1 className="text-xl">{message ? message : randomMessage}</h1>
+    </div>
   );
-}
+};
 
 export { VerySadComponent };
